@@ -1,0 +1,56 @@
+
+{% extends 'menubar.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+
+<div class=" flex justify-center pt-20">
+
+    <div class="border border-gray-400 pt-10 pr-24 pl-24">
+
+        <div class="font-bold pb-6 pl-6">
+            Order Details
+        </div>
+
+        <div>
+            <hr>
+        </div>
+
+        <table class="mt-8 ml-3 mr-3 mb-5 border-separate border-spacing-y-3">
+            <tr>
+                <td class="w-56" >Order_Id</td>
+                <td class="w-56">{{orders.id}}</td>
+            </tr>
+            <tr>
+                <td class="w-56" >Username</td>
+                <td class="w-56">{{ orders.user_profile.user.username}}</td>
+            </tr>
+            <tr>
+                <td class="w-52" >Fullname</td>
+                <td class="w-52">{{orders.user_profile.full_name}}</td>
+            </tr>   
+            <tr>
+                <td class="w-52" >Date_ordersed</td>
+                <td class="w-52">{{orders.date_ordered}}</td>
+            </tr>
+            <tr>
+                <td class="w-52" >Total_amount</td>
+                <td class="w-52">{{orders.total_price}}</td>
+            </tr>
+            <tr>
+                <td class="w-52" >Address</td>
+                <td class="w-52">{{orders.user_profile.address}}</td>
+            </tr>
+            <tr>
+                <td class="w-52" >Images</td>
+                <td class="w-52">{% for image in orders.images.all %}
+                    <img src="{{ image.image.url }}" alt="Decoration Image">
+                    {% endfor %}
+                </td>
+                
+            </tr>
+        </table>
+
+{% endblock %}

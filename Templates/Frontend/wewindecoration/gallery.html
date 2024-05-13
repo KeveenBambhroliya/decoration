@@ -1,0 +1,18 @@
+
+{% extends 'menubar.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+
+<div class=" grid grid-cols-2 md:grid-cols-3 gap-4 pt-24 ">
+    {% for item in gallery %}
+    <div>
+        <img class="h-auto max-w-full " src="/media/{{ item.image }}" alt="">
+    </div>   
+    {% endfor %} 
+</div>
+
+
+{% endblock %}

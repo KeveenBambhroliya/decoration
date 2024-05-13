@@ -1,0 +1,70 @@
+{% extends 'sidebar.html' %}
+
+{% block title %} Admin Home {% endblock %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+<div class=" overflow-x-auto pt-5 pl-5 pr-5">
+
+
+    <div class="flex">
+        
+
+        
+
+    </div>
+
+    <table class="w-full text-sm text-left rtl:text-right text-black  border-2 pt-10">
+        <thead class="text-xs text-black uppercase border-2  bg-white">
+            <tr class="">
+                <th scope="col" class=" border border-black px-16 py-3">
+                   username
+                </th>
+                <th scope="col" class=" border border-black px-6 py-3">
+                    date_ordered
+                </th>
+                <th scope="col" class=" border border-black px-6 py-3">
+                    Total_amount
+                </th>
+                <th scope="col" class=" border border-black px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr class="bg-white border-b">
+                
+                <td class="px-6 py-4 font-semibold border border-black text-black">
+                    {{ order.user_profile.user.username}}
+                </td>
+                <td class="px-6 py-4 font-semibold border border-black text-black">
+                    {{ order.date_ordered}}
+                </td>
+                
+                <td class="px-6 py-4 font-semibold border border-black text-black">
+                    {{ order.total_price }}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{% url 'order_details' order.id %}"
+                        class="font-medium text-blue-500 hover:underline">View</a>
+                </td>
+            </tr>
+          
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+{% endblock %}

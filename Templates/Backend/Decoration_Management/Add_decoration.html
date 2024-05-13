@@ -1,0 +1,60 @@
+
+{% extends 'sidebar.html' %}
+
+{% block title %} Admin Home {% endblock %}
+
+{% block content %}
+
+<div class=" w-auto bg-white inline-flex">
+
+
+    
+
+    <div class="bg-white p-8 rounded shadow-md max-w-md">
+        <h2 class="text-2xl font-semibold mb-4">Form</h2>
+    
+        <!-- Form starts here -->
+        <form action="#" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+          <!-- Image Upload -->
+          <div class="mb-4">
+            <label for="image" class="block text-gray-600 text-sm font-medium mb-2">Image</label>
+            <input type="file" id="image" name="image" class="p-2 border rounded w-full">
+          </div>
+    
+          <!-- Type Input -->
+          <div class="mb-4">
+            <label for="name" class="block text-gray-600 text-sm font-medium mb-2">Name</label>
+            <input type="text" id="name" name="name" class="p-2 border rounded w-full" placeholder="Enter name">
+          </div>
+    
+          <!-- Date Input -->
+          <div class="mb-6">
+            <label for="price">Price:</label><br>
+            <input type="number" id="price" name="price" step="0.01" class="p-2 border rounded w-full" required><br><br>
+          </div>
+
+          <div class="mb-6">
+            <label for="details">Details:</label><br>
+            <textarea id="details" name="details" class="p-2 border rounded w-full" required></textarea><br><br>
+          </div>
+
+          <label for="category">Category:</label>
+          <select name="category">
+              <option value="">Select Category</option>
+              {% for category in categories %}
+                  <option value="{{ category.id }}">{{ category.name }}</option>
+              {% endfor %}
+          </select>
+    
+          <!-- Submit Button -->
+          <button type="submit" class="bg-blue-500 text-white p-2 rounded">Submit</button>
+        </form>
+        <!-- Form ends here -->
+    
+      </div>
+
+</div>
+
+{% endblock %}

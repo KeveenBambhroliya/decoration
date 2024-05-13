@@ -1,0 +1,121 @@
+{% extends 'sidebar.html' %}
+
+{% block title %} Admin Home {% endblock %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+<div class=" overflow-x-auto pt-5 pl-5 pr-5">
+
+
+    <div class="flex">
+        <div class="pb-3 pr-5">
+            <a href="{% url 'add_decoration' %}">
+                <button
+                    class="bg-white text-blue-700 font-semibold  py-2 px-4 border border-blue-300 hover:border-blue-700 rounded">
+                    Add Decoration
+                </button>
+            </a>
+        </div>
+
+        <form method="get">
+            <label>Filter by Category:</label>
+            <select name="category">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}">
+                    {{ category.name }}
+                </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Apply Filter</button>
+        </form>
+
+    </div>
+
+    <table class="w-full text-sm text-left rtl:text-right text-black  border-2 pt-10">
+        <thead class="text-xs text-black uppercase border-2  bg-white">
+            <tr class="">
+                <th scope="col" class=" border border-black px-16 py-3">
+                    Image
+                </th>
+                <th scope="col" class=" border border-black px-6 py-3">
+                    Category
+                </th>
+                <th scope="col" class=" border border-black px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class=" border border-black px-6 py-3">
+                    price
+                </th>
+                <th scope="col" class=" border border-black px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if selected_category %}
+            <h2>{{ selected_category.name }}</h2>
+            {% for item in decoration_list %}
+            <tr class="bg-white border-b">
+                <td class="p-4 border border-black">
+                    <img src="/media/{{ item.image }}" class="w-4 md:w-4 max-w-full max-h-full" alt=" ">
+                </td>
+                <td class="px-6 py-4 font-semibold border border-black text-black">
+                    {{ item.category }}
+                </td>
+                <td class="px-6 py-4 font-semibold border border-black text-black">
+                    {{ item.name }}
+                </td>
+                <td class="px-6 py-4 font-semibold border border-black text-black">
+                    {{ item.price }}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{% url 'edit_gallery' item.id %}"
+                        class="font-medium text-blue-500 hover:underline">Edit</a>
+
+                    <a href="{% url 'delete_gallery' item.id %}"
+                        class="pl-6 font-medium text-red-500 hover:underline">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            {% for item in decoration_list %}
+            <tr class="bg-white border-b">
+                <td class="p-4 border border-black">
+                    <img src="/media/{{ item.image }}" class="w-4 md:w-4 max-w-full max-h-full" alt=" ">
+                </td>
+                <td class="px-6 py-4 font-semibold border border-black text-black">
+                    {{ item.category.name }}
+                </td>
+                <td class="px-6 py-4 font-semibold border border-black text-black">
+                    {{ item.name }}
+                </td>
+                <td class="px-6 py-4 font-semibold border border-black text-black">
+                    {{ item.price }}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{% url 'edit_decoration' item.id %}"
+                        class="font-medium text-blue-500 hover:underline">Edit</a>
+
+                    <a href="{% url 'delete_decoration' item.id %}"
+                        class="pl-6 font-medium text-red-500 hover:underline">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+{% endblock %}

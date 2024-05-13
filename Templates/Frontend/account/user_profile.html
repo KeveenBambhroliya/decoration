@@ -1,0 +1,54 @@
+{% extends 'menubar.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+
+<div class=" flex justify-center pt-44">
+
+    <div class="border border-gray-400 pt-10 pr-24 pl-24">
+
+        <div class="font-bold pb-6 pl-6">
+            Profile Details
+        </div>
+
+        <div>
+            <hr>
+        </div>
+
+        <table class="mt-8 ml-3 mr-3 mb-5 border-separate border-spacing-y-3">
+            <tr>
+                <td class="w-56" >Name</td>
+                <td class="w-56">{{user_data.username}}</td>
+            </tr>
+            <tr>
+                <td class="w-56" >Mobile Number</td>
+                <td class="w-56">{{profile_data.mobile_number}}</td>
+            </tr>
+            <tr>
+                <td class="w-52" >Email ID</td>
+                <td class="w-52">{{user_data.email}}</td>
+            </tr>   
+            <tr>
+                <td class="w-52" >Gender</td>
+                <td class="w-52">{{profile_data.gender}}</td>
+            </tr>
+            <tr>
+                <td class="w-52" >Date of Birth</td>
+                <td class="w-52">{{profile_data.birthdate}}</td>
+            </tr>
+        </table>
+
+        <div class="pb-6 ml-10 mr-3 ">
+            <a href="{% url 'edit_user_profile' %}">
+                <button
+                  class=" w-96 bg-red-500 text-white font-semibold py-2 px-4  rounded">
+                  Edit
+                </button>
+              </a>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

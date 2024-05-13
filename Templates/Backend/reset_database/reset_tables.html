@@ -1,0 +1,36 @@
+{% extends 'sidebar.html' %}
+
+{% block title %} Admin Home {% endblock %}
+
+{% block content %}
+<div class="flex">
+    
+   <div>
+    <h2>Select tables to reset:</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% if success_message %}
+        <p style="color: green;">{{ success_message }}</p>
+        {% endif %}
+        {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+        {% for table_name in table_names %}
+        <input type="checkbox" name="tables" value="{{ table_name }}"> {{ table_name }} <br>
+        {% endfor %}
+        <button type="submit">Reset Tables</button>
+    </form>
+   </div>
+
+<div>
+    
+    <a href="{% url 'reset_database' %}">
+        <button class="bg-transparent text-red-400 font-semibold py-2 px-4 border border-red-300 hover:border-red-500 rounded">
+          Reset Database
+        </button>
+       </a>
+</div>
+</div>
+
+
+{% endblock %}

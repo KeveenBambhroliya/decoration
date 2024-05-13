@@ -1,0 +1,82 @@
+{% extends 'sidebar.html' %}
+{% block title %} Admin Home {% endblock %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+<div class=" overflow-x-auto pt-5 pl-5 pr-5">
+
+
+    <div class="flex"></div>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="block text-gray-600 text-sm font-medium ">Add Category</div>
+        <input type="text" id="name" name="name" value="" class="p-2 border rounded w-56" placeholder="Enter Category">
+        <button class="bg-blue-500 text-white p-2 rounded" type="submit">Add</button>
+    </form>
+   
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+
+</div>
+
+<table class="w-full mt-5 text-sm text-left rtl:text-right text-black  border-2 pt-10">
+    <thead class="text-xs text-black uppercase border-2  bg-white">
+        <tr class="">
+            <th scope="col" class=" border border-black px-16 py-3">
+                Id
+            </th>
+            <th scope="col" class=" border border-black px-6 py-3">
+                Category Name
+            </th>
+            <th scope="col" class=" border border-black px-6 py-3">
+                Date
+            </th>
+            <th scope="col" class=" border border-black px-6 py-3">
+                TIME
+            </th>
+            <th scope="col" class=" border border-black px-6 py-3">
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in categories %}
+
+        <tr class="bg-white border-b">
+            <td class="p-4 border border-black">
+                {{ item.id }}
+            </td>
+            <td class="px-6 py-4 font-semibold border border-black text-black">
+                {{ item.name }}
+            </td>
+            <td class="px-6 py-4 font-semibold border border-black text-black">
+                {{ item.created_at }}
+            </td>
+            <td class="px-6 py-4 font-semibold border border-black text-black">
+                {{ item.updated_at }}
+            </td>
+            <td class="px-6 py-4">
+                <a href="{% url 'edit_category' item.id %}" class="font-medium text-blue-500 hover:underline">Edit</a>
+
+                <a href="{% url 'delete_category' item.id %}" class="pl-6 font-medium text-red-500 hover:underline">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+
+
+
+{% endblock %}

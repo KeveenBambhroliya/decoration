@@ -1,0 +1,249 @@
+
+
+
+
+
+
+
+
+
+
+
+{% load static tailwind_tags %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration</title>
+
+  {% tailwind_css %}
+</head>
+<body class="max-h-screen ">
+  {% for message in messages %}
+    
+          <div class="p-4 mb-4 text-sm text-red-900 rounded-lg bg-red-50 dark:text-red-400" role="alert">
+             {{ message }}
+          </div>
+
+{% endfor %}
+  <section class="border-red-500 bg-white min-h-screen flex items-center justify-center">
+    
+    <div class="bg-gray-100 p-5 flex rounded-2xl shadow-lg max-h-full  max-w-3xl">
+      <div class="md:w-1/2 px-5">
+        <h2 class="text-2xl font-bold text-[#002D74]">Registration</h2>
+        <p class="text-sm mt-4 text-[#002D74]">Create a new account</p>
+        <form class="mt-6" action="" method="POST">
+          {% csrf_token %}
+          <div>
+            <label class="block text-gray-700">Email</label>
+            <input type="Email" name="email" id="email" placeholder="Enter Email" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"  required />
+          </div>
+
+          <div class="mt-4">
+            <label class="block text-gray-700">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter Username" minlength="1" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+                  focus:bg-white focus:outline-none" required>
+          </div>
+
+          <div id="message" class="bg-gray-200 p-6 left-2 absolute rounded-md hidden">
+            <p id="letter" class="mb-1 text-sm">
+                <span class="badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 inline-block">
+                        <path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
+                    </svg>
+                    A lowercase letter
+                </span>
+            </p>
+            <p id="capital" class="mb-1 text-sm">
+                <span class="badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 inline-block">
+                        <path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
+                    </svg>
+                    A uppercase letter
+                </span>
+            </p>
+            <p id="number" class="mb-1 text-sm">
+                <span class="badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 inline-block">
+                        <path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
+                    </svg>
+                    A number
+                </span>
+            </p>
+
+            <p id="specialChar" class="mb-1 text-sm">
+              <span class="badge">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                      class="w-4 h-4 inline-block">
+                      <path
+                          d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
+                  </svg>
+                  Contains special character
+              </span>
+          </p>
+
+            <p id="length" class="mb-1 text-sm">
+                <span class="badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 inline-block">
+                        <path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
+                    </svg>
+                    Minimum 8 characters
+                    </span>
+        </div>   
+
+          <div class="mt-4">
+            <label class="block text-gray-700">Password</label>
+            <input type="password" name="password1" id="psw" placeholder="Enter Password" minlength="8" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+                  focus:bg-white focus:outline-none" required>
+          </div>
+
+          <div class="mt-4">
+            <label class="block text-gray-700">Confirm Password</label>
+            <input type="password" name="password2" id="password2" placeholder="Enter Confirm Password" minlength="8" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+                  focus:bg-white focus:outline-none" required>
+          </div>
+
+          
+
+          <button type="submit" class=" w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
+                px-4 py-3 mt-6">Register</button>
+        </form>
+      </div>
+
+      <div class="md:w-1/2 px-5  ">
+        <img src="https://images.pexels.com/photos/1740756/pexels-photo-1740756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="mt-12 rounded-2xl h-1/2 w-full" alt="page img">
+
+            <div class=" mt-7 grid grid-cols-3 items-center text-gray-500">
+          <hr class="border-gray-500" />
+          <p class="text-center text-sm">OR</p>
+          <hr class="border-gray-500" />
+        </div>
+        
+
+        <a href="">
+          <button class=" bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300" disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.314 28.323" class="w-6 h-6" style="enable-background:new 0 0 28.314 28.323" xml:space="preserve"><path d="m27.728 20.384-4.242-4.242a1.982 1.982 0 0 0-1.413-.586h-.002c-.534 0-1.036.209-1.413.586L17.83 18.97l-8.485-8.485 2.828-2.828c.78-.78.78-2.05-.001-2.83L7.929.585A1.986 1.986 0 0 0 6.516 0h-.001C5.98 0 5.478.209 5.101.587L.858 4.83C.729 4.958-.389 6.168.142 8.827c.626 3.129 3.246 7.019 7.787 11.56 6.499 6.499 10.598 7.937 12.953 7.937 1.63 0 2.426-.689 2.604-.867l4.242-4.242c.378-.378.587-.881.586-1.416 0-.534-.208-1.037-.586-1.415zm-5.656 5.658c-.028.028-3.409 2.249-12.729-7.07C-.178 9.452 2.276 6.243 2.272 6.244L6.515 2l4.243 4.244-3.535 3.535a.999.999 0 0 0 0 1.414l9.899 9.899a.999.999 0 0 0 1.414 0l3.535-3.536 4.243 4.244-4.242 4.242z"/></svg>
+          <span class="ml-4">Sing Up with Mobile Number</span>
+      </button>
+        </a>
+      
+
+       
+        
+
+        <div class="text-sm flex justify-between items-center mt-3">
+          <p>If you already have an account...</p>
+          <a href="login">          <button class="py-2 px-5 ml-3 bg-white border rounded-xl hover:scale-110 duration-300 border-blue-400  ">Login</button>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+    
+  <script>
+    var myInput = document.getElementById("psw");
+    var messageBox = document.getElementById("message");
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var specialChar = document.getElementById("specialChar");
+    var length = document.getElementById("length");
+
+    
+    myInput.addEventListener("focus", function() {
+        messageBox.classList.remove("hidden");
+    });
+
+    
+    myInput.addEventListener("blur", function() {
+        messageBox.classList.add("hidden");
+    });
+
+    
+    myInput.addEventListener("input", function() {
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+        if(myInput.value.match(lowerCaseLetters)) {
+            toggleClass(letter, "text-red-500", "text-green-500");
+            letter.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"stroke="currentColor" class="w-4 h-4 inline-block"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /> </svg>A lowercase letter</span>';
+
+        } else {
+            toggleClass(letter, "text-green-500", "text-red-500");
+            letter.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 inline-block"><path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"></path></svg> A lowercase letter</span>';
+
+        }
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if(myInput.value.match(upperCaseLetters)) {
+            toggleClass(capital, "text-red-500", "text-green-500");
+            
+            capital.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"stroke="currentColor" class="w-4 h-4 inline-block"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /> </svg>A uppercase letter</span>';
+        } else {
+            toggleClass(capital, "text-green-500", "text-red-500");
+            
+            capital.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 inline-block"><path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"></path></svg> A uppercase letter</span>';
+        }
+
+        
+        var numbers = /[0-9]/g;
+        if(myInput.value.match(numbers)) {
+            toggleClass(number, "text-red-500", "text-green-500");
+            number.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"stroke="currentColor" class="w-4 h-4 inline-block"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /> </svg> A number</span>';
+
+        } else {
+            toggleClass(number, "text-green-500", "text-red-500");
+            number.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 inline-block"><path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"></path></svg> A number</span>';
+
+        }
+
+        var specialCharacters = /[!@#$%^&*(),.?":{}|<>]/g;
+        if (myInput.value.match(specialCharacters)) {
+            toggleClass(specialChar, "text-red-500", "text-green-500");
+            specialChar.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /> </svg> Contains special character</span>';
+        } else {
+            toggleClass(specialChar, "text-green-500", "text-red-500");
+            specialChar.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 inline-block"><path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"></path></svg> Contains special character</span>';
+        }
+
+        // Validate length
+        if(myInput.value.length >= 8) {
+            toggleClass(length, "text-red-500", "text-green-500");
+            length.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"stroke="currentColor" class="w-4 h-4 inline-block"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /> </svg> Minimum 8 characters</span>';
+
+        } else {
+            toggleClass(length, "text-green-500", "text-red-500");
+            length.innerHTML = '<span class="badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 inline-block"><path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"></path></svg> Minimum 8 characters</span>';
+
+        }
+    });
+
+    function toggleClass(element, removeClass, addClass) {
+        element.classList.remove(removeClass);
+        element.classList.add(addClass);
+    }
+</script>
+
+
+  </body>
+  
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

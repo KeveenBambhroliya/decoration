@@ -1,0 +1,39 @@
+
+{% extends 'menubar.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-8">Checkout</h1>
+    <form method="POST" action="{% url 'checkout' %}" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="full_name" class="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
+            <input type="text" id="full_name" name="full_name" value="{{ user_profile.full_name  }}" placeholder="Full Name" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label for="mobile" class="block text-gray-700 text-sm font-bold mb-2">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" maxlength="10" value="{{ user_profile.mobile  }}" placeholder="Mobile Number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label for="date"  class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
+            <input type="date" id="date" name="date"><br><br>
+        </div>
+        <div class="mb-4">
+            <label for="time"  class="block text-gray-700 text-sm font-bold mb-2">Time:</label>
+            <input type="time" id="time" name="time"><br><br>
+        </div>
+        <div class="mb-6">
+            <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Address:</label>
+            <textarea id="address" name="address" rows="4" placeholder="Address" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ user_profile.address }}</textarea>
+        </div>
+        <div class="flex items-center justify-between">
+            <button class="bg-green-500 hover:bg-green-700 text-white w-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Confirm
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
